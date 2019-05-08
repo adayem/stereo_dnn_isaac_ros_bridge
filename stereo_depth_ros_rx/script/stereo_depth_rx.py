@@ -60,12 +60,12 @@ class StereoDnn:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Receive depth data from an Nvidia Isaac nodelet and display the data.')
-    parser.add_argument('--min_depth', metavar='N', type=float, nargs=1, default=0.0,
+    parser.add_argument('--min_depth', metavar='<float>', type=float, default=0.0,
                         help='Minimum distance to display in meters (default: 0.0)')
-    parser.add_argument('--max_depth', metavar='N',type=float, nargs=1, default=10.0,
+    parser.add_argument('--max_depth', metavar='<float>',type=float, default=10.0,
                         help='Maximum distance to display in meters (default: 10.0)')
     args = parser.parse_args()
     
     rospy.init_node("stereo_depth_rx")
-    app = StereoDnn(min_depth=args.min_depth[0], max_depth=args.max_depth[0])
+    app = StereoDnn(min_depth=args.min_depth, max_depth=args.max_depth)
     rospy.spin()
